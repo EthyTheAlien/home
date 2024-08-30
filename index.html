@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' 'unsafe-inline' https://fonts.gstatic.com; img-src 'self' data: blob: https://pfst.cf2.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com; media-src 'self' data: blob: https://pfst.cf2.poecdn.net https://i.imgur.com https://wikimedia.org; frame-src 'self' https://www.youtube.com; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETHERUS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;family=Montserrat:wght@600&amp;family=Playfair+Display:wght@700&amp;family=Orbitron&amp;display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e1e1e, #4a4a4a);
+            color: #f1f1f1;
+            line-height: 1.6;
+            transition: background 0.3s, color 0.3s;
+        }
+        header {
+            background: linear-gradient(135deg, #4a90e2, #2c3e50);
+            color: white;
+            padding: 60px;
+            text-align: center;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            border-bottom: 5px solid #4a90e2;
+            position: relative;
+            border-radius: 0 0 20px 20px;
+        }
+        header::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            width: 100px;
+            height: 5px;
+            background: #fff;
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+        h1 {
+            font-size: 5em; /* Increased font size for elegance */
+            color: #ffffff; /* Set color to white */
+            text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #6ab04c; /* Enhanced glow effect */
+            font-family: 'Orbitron', sans-serif; /* Futuristic font */
+            transition: transform 0.3s; /* Add a subtle animation */
+        }
+        h1:hover {
+            transform: scale(1.1); /* Scale effect on hover */
+        }
+        button {
+            background-color: transparent;
+            border: 2px solid #ffffff; /* Border color for dark mode */
+            color: #ffffff; /* Text color for dark mode */
+            padding: 10px 20px;
+            border-radius: 30px; /* Round edges */
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .dark-mode button {
+            border-color: #ffffff; /* White border for dark mode */
+        }
+        .dark-mode button:hover {
+            box-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff; /* White glow */
+        }
+        .light-mode button {
+            border-color: #000000; /* Black border for light mode */
+            color: #000000; /* Text color for light mode */
+        }
+        .light-mode button:hover {
+            box-shadow: 0 0 10px #000000, 0 0 20px #000000; /* Black glow */
+        }
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(44, 62, 80, 0.9); /* Semi-transparent background */
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+        }
+        main:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 50px rgba(0, 0, 0, 0.4);
+        }
+        h2 {
+            font-size: 2.5em; /* Default size for larger screens */
+            color: #4a90e2;
+            font-family: 'Montserrat', sans-serif; /* Modern font */
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2em; /* Increased size for better readability */
+            transition: color 0.3s;
+        }
+        p:hover {
+            color: #6ab04c;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        a {
+            color: #81cfe0; /* Light color for links */
+            text-decoration: none;
+            border-bottom: 2px solid transparent;
+            transition: color 0.3s, border-color 0.3s;
+        }
+        a:hover {
+            color: #2c3e50;
+            border-color: #4a90e2;
+        }
+        /* Dark mode link styles */
+        .dark-mode a {
+            color: #81cfe0; /* Light color for links in dark mode */
+            text-shadow: 0 0 5px #6ab04c, 0 0 10px #6ab04c;
+        }
+        .dark-mode a:hover {
+            color: #6ab04c; /* Change color on hover */
+            text-shadow: 0 0 15px #6ab04c, 0 0 20px #6ab04c; /* Glow effect */
+        }
+        /* Light mode styles */
+        .light-mode {
+            background: linear-gradient(135deg, #e8f1f2, #ffffff);
+            color: #333;
+        }
+        .light-mode main {
+            background: white;
+        }
+        .light-mode a {
+            color: #4a90e2; /* Color for links in light mode */
+            text-shadow: none;
+        }
+        .light-mode a:hover {
+            color: #2c3e50; /* Change color on hover in light mode */
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        .underline {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 3em; /* Adjust font size for mobile */
+            }
+            h2 {
+                font-size: 2.2em; /* Adjust for smaller screens */
+            }
+            p {
+                font-size: 1.5em; /* Larger paragraph text for mobile */
+            }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <header>
+        <h1>ETHERUS</h1>
+        <button id="mode-toggle">Toggle Light Mode</button>
+    </header>
+    <main>
+        <h2 id="about">About Me</h2>
+        <p>Hi, I'm Etherus, an avid spaceflight enthusiast, gamer, and future aerospace engineer.</p>
+
+        <h2 id="projects">Projects</h2>
+        <p>I am currently working on reviewing products from various tech companies for my high school technology maintenance club, of which I am an officer.</p>
+
+        <h2 id="contact">Contact</h2>
+        <p>You can reach me on Discord: <strong><span class="underline">.etherus</span></strong></p>
+
+        <h2 id="follow">Follow Me</h2>
+        <ul>
+            <li><a href="https://x.com/etherus_aero" target="_blank">Twitter</a></li>
+            <li><a href="https://www.youtube.com/@Etherus69" target="_blank">YouTube</a></li>
+            <li><a href="https://www.tiktok.com/@starship_zone" target="_blank">TikTok</a></li>
+            <li><a href="https://github.com/EthyTheAlien" target="_blank">GitHub</a></li>
+        </ul>
+    </main>
+    <footer>
+        <p>© 2024 Etherus. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const toggleButton = document.getElementById('mode-toggle');
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle('light-mode');
+            toggleButton.textContent = document.body.classList.contains('dark-mode') ? 'Toggle Light Mode' : 'Toggle Dark Mode';
+        });
+    </script>
+
+
+</body></html>
